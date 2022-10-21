@@ -75,7 +75,7 @@ button.addEventListener("click", () => {
   // Check that input field is not empty
   if (
     inputNumber.value == null ||
-    inputNumber.value == "undefine" ||
+    inputNumber.value == "undefined" ||
     inputNumber.value == "" ||
     inputNumber.value == NaN
   ) {
