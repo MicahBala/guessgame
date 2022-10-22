@@ -1,7 +1,7 @@
 console.log("The Number Guessing game");
-// const username = prompt("Enter your username: ");
+const username = prompt("Enter your username: ");
 
-// console.log(`Welcome ${username}`);
+console.log(`Welcome ${username}`);
 console.log("INSTRUCTIONS: Guess a number by entering it at the prompt:");
 
 let stage = 1;
