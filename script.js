@@ -1,98 +1,42 @@
-const randNum = document.getElementById("randomnum");
-let userName = document.getElementById("username");
-let stageValue = document.getElementById("stage");
-let minValue = document.getElementById("minnum");
-let maxValue = document.getElementById("maxnum");
-const inputNumber = document.getElementById("inputnumber");
-const button = document.getElementById("clickbutton");
-let error = document.getElementById("error");
-let goodGuess = document.getElementById("goodguess");
-let generateRandomNum;
+console.log("The Number Guessing game");
+// const username = prompt("Enter your username: ");
 
-let person;
+// console.log(`Welcome ${username}`);
+console.log("INSTRUCTIONS: Guess a number by entering it at the prompt:");
+
 let stage = 1;
-let correctCount = 0;
-let randomNum;
+let minNum = 1;
+let maxNum = 2;
+let maxStage = 5;
+let guessNum;
 
-minValue = 1;
-maxValue = 2;
+for (let i = stage; i <= maxStage; i++) {
+  // User guess number
+  let userGuess = () => {
+    guessNum = parseInt(
+      prompt(`Guess a Number between ${minNum} and ${maxNum}`)
+    );
 
-minValue.innerHTML = 1;
-maxValue.innerHTML = 2;
-
-userName.innerHTML = person;
-stageValue.innerHTML = stage;
-
-person = prompt("Enter your username");
-
-// Function to check if guess is correct and increase correctCount
-const guess = () => {
-  if (randomNum === parseInt(inputNumber.value)) {
-    randNum.style.display = "block";
-    goodGuess.style.display = "block";
-
-    setTimeout(() => {
-      goodGuess.style.display = "none";
-    }, 2000);
-    // correctCount++;
-    stageValue.innerHTML = stage + 1;
-    increseGameStage();
-  } else {
-    goodGuess.style.display = "block";
-    goodGuess.innerHTML = "Sorry try again...";
-
-    setTimeout(() => {
-      randNum.style.display = "none";
-      goodGuess.style.display = "none";
-      inputNumber.value = " ";
-    }, 2000);
-  }
-};
-
-// Function to change stage based on correctCount
-const increseGameStage = () => {
-  if (stage === 2) {
-    maxValue.innerHTML = "3";
-    inputNumber.value = " ";
-    randNum.style.display = "none";
-  }
-
-  if (stage === 3) {
-    maxValue.innerHTML = "5";
-    inputNumber.value = " ";
-    randNum.style.display = "none";
-  }
-
-  if (stage === 4) {
-    maxValue.innerHTML = "7";
-    inputNumber.value = " ";
-    randNum.style.display = "none";
-  }
-};
-
-// Function to generate random number on click of button
-button.addEventListener("click", () => {
-  // Check that input field is not empty
-  if (
-    inputNumber.value == null ||
-    inputNumber.value == "undefined" ||
-    inputNumber.value == "" ||
-    inputNumber.value == NaN
-  ) {
-    error.innerHTML = "You must enter a number within the accepted range";
-    error.style.display = "block";
-    setTimeout(() => {
-      error.style.display = "none";
-    }, 2000);
-
-    return;
-  }
-  generateRandomNum = (maxNum, minNum) => {
-    randomNum = Math.round(Math.random() * (maxNum - minNum) + minNum);
-    console.log(randomNum, parseInt(inputNumber.value));
-    randNum.innerHTML = randomNum;
-    guess();
+    return guessNum;
   };
 
-  generateRandomNum(parseInt(minValue), parseInt(maxValue));
-});
+  // Generate Random number
+  const randomNumber = (min, max) => {
+    const randomNum = Math.round(Math.random() * (max - min) + 1);
+    return randomNum;
+  };
+
+  userGuess = userGuess();
+  rnum = randomNumber(minNum, maxNum);
+
+  if (userGuess === rnum) {
+    stage = stage + 1;
+    maxNum = maxNum + 1;
+    console.log(`Correct...moving to stage ${stage}`);
+    continue;
+  } else {
+    console.log("try again...");
+  }
+}
+
+console.log("Game Over!!!");
